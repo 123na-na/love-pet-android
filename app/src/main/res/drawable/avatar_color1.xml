@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#FF6B9D"
+                android:endColor="#FF8E53" />
+        </shape>
+    </item>
+    <item
+        android:gravity="center"
+        android:width="24dp"
+        android:height="24dp">
+        <bitmap
+            android:src="@drawable/ic_paw_black"
+            android:tint="#FFFFFF" />
+    </item>
+</layer-list>
