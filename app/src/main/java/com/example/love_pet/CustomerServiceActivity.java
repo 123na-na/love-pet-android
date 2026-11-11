@@ -23,6 +23,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.io.IOException;
 
+import com.bumptech.glide.Glide;
+
 public class CustomerServiceActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PICK_IMAGE = 1001;
@@ -448,6 +450,79 @@ public class CustomerServiceActivity extends AppCompatActivity {
         scrollToBottom();
     }
 
+    /**
+     * 添加用户图片消息气泡（右侧）
+     */
+    private void addUserImageMessage(Uri imageUri) {
+        LinearLayout msgLayout = new LinearLayout(this);
+        msgLayout.setOrientation(LinearLayout.HORIZONTAL);
+        msgLayout.setGravity(android.view.Gravity.END);
+
+        final float density = getResources().getDisplayMetrics().density;
+        int size = (int) (150 * density);
+        int dp8 = (int) (8 * density);
+
+        ImageView imageView = new ImageView(this);
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(size, size);
+        imageParams.setMarginEnd(dp8);
+        imageView.setLayoutParams(imageParams);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setClipToOutline(true);
+        imageView.setOutlineProvider(new android.view.ViewOutlineProvider() {
+            @Override
+            public void getOutline(android.view.View view, android.graphics.Outline outline) {
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 8 * density);
+            }
+        });
+        Glide.with(this).load(imageUri).into(imageView);
+        msgLayout.addView(imageView);
+
+        ImageView avatar = new ImageView(this);
+        int sizeDp36 = (int) (36 * density);
+        LinearLayout.LayoutParams avatarParams = new LinearLayout.LayoutParams(sizeDp36, sizeDp36);
+        avatar.setLayoutParams(avatarParams);
+        avatar.setClipToOutline(true);
+        avatar.setOutlineProvider(new android.view.ViewOutlineProvider() {
+            @Override
+            public void getOutline(android.view.View view, android.graphics.Outline outline) {
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+            }
+        });
+        AvatarManager.loadAvatar(this, avatar);
+        msgLayout.addView(avatar);
+
+        LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        containerParams.setMargins(0, 0, 0, dp8);
+        messageContainer.addView(msgLayout, containerParams);
+        scrollToBottom();
+    }
+
+    /**
+     * 把图片交给多模态模型（qwen-vl-plus）识别，并显示客服回复
+     */
+    private void requestAiReplyForImage(final Uri imageUri) {
+        addCustomerServiceMessage("正在识别图片...");
+
+        String prompt = "用户上传了一张图片，请先用一句话说明图片里的主要对象，"
+                + "再结合本店商品或宠物护理给一句简短建议（总共不超过80字）。"
+                + "如果图片与商品、宠物无关，或画面看不清，请直接说明，不要编造。";
+
+        qwenApiHelper.sendImageMessage(this, imageUri, prompt, new QwenApiHelper.OnResponseCallback() {
+            @Override
+            public void onSuccess(String reply) {
+                removeLastMessage();
+                addCustomerServiceMessage(reply);
+            }
+
+            @Override
+            public void onError(String error) {
+                removeLastMessage();
+                addCustomerServiceMessage("抱歉，这张图片我暂时看不清，可以补充文字描述，或转人工客服~");
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -459,7 +534,8 @@ public class CustomerServiceActivity extends AppCompatActivity {
                 imageUri = cameraImageUri;
             }
             if (imageUri != null) {
-                Toast.makeText(this, "图片已选择", Toast.LENGTH_SHORT).show();
+                addUserImageMessage(imageUri);
+                requestAiReplyForImage(imageUri);
             }
         }
     }

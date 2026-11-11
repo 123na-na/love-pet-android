@@ -2,6 +2,10 @@
 sdk.dir=C:\\Users\\your-name\\AppData\\Local\\Android\\Sdk
 
 QWEN_API_KEY=
+# 文本模型，留空走默认 qwen-plus
+QWEN_TEXT_MODEL=
+# 视觉模型，留空走默认 qwen3-vl-plus（qwen-vl-plus 已下架，勿用）
+QWEN_VL_MODEL=
 BAIDU_APP_ID=
 BAIDU_API_KEY=
 BAIDU_SECRET_KEY=

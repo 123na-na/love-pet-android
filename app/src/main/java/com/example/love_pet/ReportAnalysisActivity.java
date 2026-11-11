@@ -42,6 +42,7 @@ public class ReportAnalysisActivity extends AppCompatActivity {
     private LinearLayout layoutEmpty;
     private List<ReportRecord> reportList = new ArrayList<>();
     private Uri photoUri;
+    private QwenApiHelper qwenApiHelper;
 
     public static class ReportRecord {
         public String type;
@@ -74,6 +75,8 @@ public class ReportAnalysisActivity extends AppCompatActivity {
         layoutEmpty = findViewById(R.id.layout_empty);
 
         layoutUpload.setOnClickListener(v -> showUploadOptions());
+
+        qwenApiHelper = new QwenApiHelper();
 
         loadHistory();
     }
@@ -180,48 +183,41 @@ public class ReportAnalysisActivity extends AppCompatActivity {
         final AlertDialog dialog = builder.create();
         dialog.show();
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            dialog.dismiss();
-            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String prompt = "这是一张宠物检查报告或化验单的照片。请用中文回答："
+                + "1）先说清图片上能辨认的检查项目和数值；"
+                + "2）指出明显偏离常见参考范围的项；"
+                + "3）给一句就医建议；"
+                + "4）结尾固定写“以上仅为图片信息整理，不能作为诊断，请以执业兽医的判断为准”。"
+                + "如果图片看不清或不是报告单，请直接说明无法识别，不要编造任何数据。";
 
-            String[] reportTypes = {"血常规检查", "生化全套", "X光片", "尿常规", "粪便检查"};
-            String type = reportTypes[(int) (Math.random() * reportTypes.length)];
-
-            String result;
-            String suggestion;
-            double rand = Math.random();
-            if (rand < 0.4) {
-                result = "基本正常，各项指标在正常范围内";
-                suggestion = "继续保持良好的生活习惯，定期体检即可";
-            } else if (rand < 0.7) {
-                result = "基本正常，白细胞略高，可能存在轻微炎症";
-                suggestion = "建议观察，一周后复查，注意休息和饮食";
-            } else if (rand < 0.9) {
-                result = "部分指标异常，建议进一步检查";
-                suggestion = "建议到正规宠物医院做进一步检查，遵医嘱治疗";
-            } else {
-                result = "指标异常较多，建议及时就医";
-                suggestion = "请尽快带宠物到宠物医院就诊，以免延误病情";
+        qwenApiHelper.sendImageMessage(this, imageUri, prompt, new QwenApiHelper.OnResponseCallback() {
+            @Override
+            public void onSuccess(String reply) {
+                dialog.dismiss();
+                String cleaned = reply == null ? "" : reply.trim();
+                if (cleaned.isEmpty()) {
+                    cleaned = "图片信息读取完成，但未识别到明确数值。";
+                }
+                String result = cleaned;
+                String suggestion = "以上仅为图片信息整理，不能作为诊断，请以执业兽医的判断为准。";
+                int cut = cleaned.indexOf("以上仅为图片信息整理");
+                if (cut > 0) {
+                    result = cleaned.substring(0, cut).trim();
+                }
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                addReportRecord(new ReportRecord("报告解读", petName, date, result, suggestion, 1));
+                Toast.makeText(ReportAnalysisActivity.this, "解读完成", Toast.LENGTH_SHORT).show();
             }
 
-            ReportRecord newReport = new ReportRecord(
-                    type,
-                    petName,
-                    date,
-                    result,
-                    suggestion,
-                    1
-            );
-            reportList.add(0, newReport);
-            layoutHistory.removeAllViews();
-            for (ReportRecord report : reportList) {
-                View item = createReportItem(report);
-                layoutHistory.addView(item);
+            @Override
+            public void onError(String error) {
+                dialog.dismiss();
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                addReportRecord(new ReportRecord("报告解读", petName, date,
+                        "暂时无法完成图片识别，未生成解读结果。",
+                        "请携带原件到宠物医院，由执业兽医当面解读。", 2));
             }
-            layoutEmpty.setVisibility(View.GONE);
-            layoutHistory.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "AI解读完成", Toast.LENGTH_SHORT).show();
-        }, 2500);
+        });
     }
 
     private List<ReportRecord> getReports() {
@@ -249,6 +245,16 @@ public class ReportAnalysisActivity extends AppCompatActivity {
             View item = createReportItem(report);
             layoutHistory.addView(item);
         }
+    }
+
+    private void addReportRecord(ReportRecord record) {
+        reportList.add(0, record);
+        layoutHistory.removeAllViews();
+        for (ReportRecord r : reportList) {
+            layoutHistory.addView(createReportItem(r));
+        }
+        layoutEmpty.setVisibility(View.GONE);
+        layoutHistory.setVisibility(View.VISIBLE);
     }
 
     private View createReportItem(final ReportRecord report) {
@@ -314,6 +320,14 @@ public class ReportAnalysisActivity extends AppCompatActivity {
         item.addView(divider, dividerParams);
 
         return item;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (qwenApiHelper != null) {
+            qwenApiHelper.release();
+        }
     }
 
     private int dp2px(int dp) {
