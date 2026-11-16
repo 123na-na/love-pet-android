@@ -1,0 +1,27 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# 模块构建产物
+/app/build/
+/app/debug/
+/app/release/
+/app/.gradle/
+
+# 编译日志
+*.log
+
+# IDE 工程文件
+/.idea/

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8E7"
+    android:orientation="vertical">
+
+    <!-- 顶部标题栏 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="#FFF8E7">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="电子宠物证"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <!-- 内容区域（可滚动） -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <!-- 宠物信息卡片 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_pet_cert_card"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <!-- 左侧：宠物信息 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_breed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="品种：金毛"
+                        android:textColor="#5D4037"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_origin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="原产地：英国"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_body_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="体型：中大型"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="预计身高：55-62cm"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="预计体重：25-35kg"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_alias"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="别名：金毛寻回犬、黄金猎犬"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_lifespan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="寿命：12-15年（相当于人类75-80岁）"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_personality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="性格：性格沉稳、充满耐心、忠诚"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_features"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="特点：是一种工作能力很强的猎犬，喜欢玩水"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_care_tips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="打磨：无忌恶狗热多温的环境，注意温度变化"
+                        android:textColor="#5D4037"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- 右侧：宠物大图 -->
+                <ImageView
+                    android:id="@+id/iv_pet_photo"
+                    android:layout_width="140dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/post1" />
+            </LinearLayout>
+
+            <!-- 爱宠晒图标题 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="爱宠晒图"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- 晒图横向滚动区域 -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/gallery_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <!-- 动态添加晒图卡片 -->
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

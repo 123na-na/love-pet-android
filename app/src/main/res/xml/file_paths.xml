@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 外部缓存路径（用于拍照临时文件） -->
+    <external-cache-path
+        name="avatars"
+        path="avatars/" />
+    <external-cache-path
+        name="images"
+        path="." />
+
+    <!-- 外部存储路径 -->
+    <external-files-path
+        name="files"
+        path="." />
+</paths>

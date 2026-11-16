@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <!-- 顶部栏：脚印 + 标签 + 搜索 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 左上角脚印 -->
+        <ImageView
+            android:id="@+id/iv_paw_logo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_paw_black" />
+
+        <!-- 中间标签区域 -->
+        <LinearLayout
+            android:id="@+id/tab_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- 标签行 -->
+            <LinearLayout
+                android:id="@+id/tabs_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_tab_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="关注"
+                        android:textColor="#666666"
+                        android:textSize="16sp" />
+                    <View
+                        android:id="@+id/underline_follow"
+                        android:layout_width="32dp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:background="#333333"
+                        android:visibility="invisible" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_tab_discover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="发现"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:id="@+id/underline_discover"
+                        android:layout_width="32dp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:background="#333333"
+                        android:visibility="visible" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_tab_nearby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="附近"
+                        android:textColor="#666666"
+                        android:textSize="16sp" />
+                    <View
+                        android:id="@+id/underline_nearby"
+                        android:layout_width="32dp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:background="#333333"
+                        android:visibility="invisible" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 右上角搜索 -->
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_search_icon" />
+    </LinearLayout>
+
+    <!-- 内容列表（瀑布流） -->
+    <ScrollView
+        android:id="@+id/scroll_pet_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:fillViewport="false"
+        android:clipToPadding="false">
+
+        <GridLayout
+            android:id="@+id/grid_pets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:columnCount="2"
+            android:rowCount="10">
+
+            <!-- 卡片会动态添加到这里 -->
+        </GridLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 头像上传所需权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 语音识别所需权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- 高德地图定位所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <!-- 闹钟提醒所需权限 -->
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 声网Agora视频通话所需权限 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <application
+        android:name=".LovePetApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Love_pet"
+        tools:targetApi="31">
+
+        <!-- 高德地图API Key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="68ac32e95649ee27dc5766b0ec4cfb72" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SetupProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DynamicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerServiceActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".WashActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".BeautyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MessageActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ChatDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+
+        <activity
+            android:name=".ShopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelfareActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdoptActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CollectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PublishActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".LocationPickerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MyNotesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ConfirmOrderActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AddressPickerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PetCertificateActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PetLocationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AddPetActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".WalletActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PaymentSettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PaymentPasswordActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".FeedbackActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".FeedbackDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".FeedbackSuggestionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PetTabooActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PetTabooListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PetDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AllPetsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AdoptApplyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AdoptSuccessActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".BookingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ShopContactActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".WashMapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PetDoctorActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AiCheckActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AiResultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DepartmentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ConsultChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".PrescriptionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PrescriptionListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ConsultEvaluateActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".VideoConsultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".NursingPlanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ReportAnalysisActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MedicationReminderActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".VaccineRecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddVaccineActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HospitalAppointmentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".WashShopContactActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".VideoCallActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HospitalMapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AddMedicationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AppointmentBookActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".MedicationAlarmReceiver"
+            android:exported="false" />
+
+        <!-- uCrop 裁剪Activity -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- FileProvider (拍照临时文件共享) -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- 微信分享回调Activity -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+
+</manifest>

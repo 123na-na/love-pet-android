@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, sans-serif;
+        }
+        #mapContainer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #EBE9E6;
+        }
+        #mapImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        #centerMarker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            z-index: 10;
+            pointer-events: none;
+        }
+        #centerMarker img {
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapContainer">
+        <img id="mapImg" src="" alt="地图加载中..." />
+        <div id="centerMarker">
+            <svg viewBox="0 0 24 24" fill="#FF6B35" width="32" height="32">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+        </div>
+    </div>
+    <script>
+        var currentLat = 22.5431;
+        var currentLng = 114.0579;
+        var apiKey = '7ad8f760b5fe418fe9b8134b497354aa';
+
+        function loadStaticMap(lat, lng) {
+            currentLat = lat;
+            currentLng = lng;
+            var url = 'https://restapi.amap.com/v3/staticmap?location=' + lng + ',' + lat +
+                      '&zoom=15&size=750*400&markers=mid,,A:' + lng + ',' + lat +
+                      '&key=' + apiKey;
+            document.getElementById('mapImg').src = url;
+        }
+
+        function updateLocation(lat, lng) {
+            loadStaticMap(lat, lng);
+        }
+
+        loadStaticMap(currentLat, currentLng);
+    </script>
+</body>
+</html>

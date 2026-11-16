@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp">
+
+    <!-- 用户头像（圆形） -->
+    <ImageView
+        android:id="@+id/iv_comment_avatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_circle_avatar"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop" />
+
+    <!-- 评论内容区域 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <!-- 用户名 -->
+        <TextView
+            android:id="@+id/tv_comment_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- 评论内容 -->
+        <TextView
+            android:id="@+id/tv_comment_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp" />
+
+        <!-- 评论图片 -->
+        <ImageView
+            android:id="@+id/iv_comment_image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="6dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <!-- 底部行：时间 + IP | 点赞数 + 回复按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 时间 -->
+            <TextView
+                android:id="@+id/tv_comment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2小时前"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <!-- IP归属地 -->
+            <TextView
+                android:id="@+id/tv_comment_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="江苏"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <!-- 回复标签 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="回复"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <!-- 点赞图标 + 数量 -->
+            <ImageView
+                android:id="@+id/iv_comment_like_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_like_normal" />
+
+            <TextView
+                android:id="@+id/tv_comment_like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:minWidth="20dp"
+                android:text="1"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <!-- 更多操作（隐藏） -->
+            <ImageView
+                android:id="@+id/iv_comment_more"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_question_mark"
+                android:alpha="0.5"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
